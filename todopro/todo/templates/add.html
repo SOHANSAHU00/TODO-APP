@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card card-soft">
+                <div class="card-body p-4 p-lg-5">
+                    <h1 class="h3 fw-bold mb-2">Add a New Task</h1>
+                    <p class="text-muted mb-4">Capture your next idea or responsibility in one place.</p>
+
+                    {% if error_message %}
+                        <div class="alert alert-danger">{{ error_message }}</div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="title" class="form-label fw-semibold">Title</label>
+                            <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="e.g. Finish report" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="form-label fw-semibold">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" placeholder="Add some details..."></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary px-4">Add Task</button>
+                            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
